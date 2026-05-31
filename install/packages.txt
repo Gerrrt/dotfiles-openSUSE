@@ -1,0 +1,50 @@
+# dotfiles-openSUSE/install/packages.txt
+# zypper package names for the modern terminal stack. One per line; # comments ok.
+# Tools NOT reliably packaged on openSUSE (starship, atuin, yazi, tree-sitter-cli)
+# are installed by bootstrap.sh via upstream installer / cargo — keep them OUT.
+
+# ── shell + multiplexer ───────────────────────────────────────
+zsh
+tmux
+
+# ── modern CLI core ───────────────────────────────────────────
+eza            # ls
+bat            # cat
+fd             # find  (openSUSE packages it as `fd`, binary is `fd` — not fdfind)
+ripgrep        # grep
+zoxide         # cd
+fzf            # fuzzy finder
+git-delta      # git pager / diffs (binary: delta)
+btop           # top/htop
+tealdeer       # tldr (binary: tldr). If missing, it's in a devel repo, or: cargo install tealdeer
+
+# ── editor + git workflow ─────────────────────────────────────
+neovim
+git              # `git subtree` ships WITH git on openSUSE (no separate package, unlike Fedora)
+openssh-clients  # ssh / ssh-keygen / ssh-agent. Older Leap may call this just `openssh`
+lazygit          # in openSUSE repos (unlike Fedora, which needs a COPR)
+
+# ── clipboard (Wayland-first; inert under WSL where clip.exe is used) ─────────
+wl-clipboard   # wl-copy / wl-paste
+xclip          # X11 fallback (sessions / SSH X-forward)
+
+# ── build + language toolchain (needed for cargo-installed tools) ─
+gcc
+gcc-c++        # some tree-sitter parsers ship C++ scanners
+make
+cargo          # rust toolchain -> builds yazi + tree-sitter-cli
+
+# ── Neovim provider deps (fix :checkhealth) ───────────────────
+python3-neovim # pynvim — the Python 3 provider module
+python3-pip
+# rust-analyzer  # uncomment if you use the Rust LSP (rustaceanvim wants it)
+# go             # uncomment for the Go LSP (gopls) + Go tooling
+
+# ── misc useful ───────────────────────────────────────────────
+curl
+wget
+jq
+htop
+flatpak
+gawk
+direnv
