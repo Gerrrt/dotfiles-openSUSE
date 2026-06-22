@@ -1,13 +1,13 @@
 # CLAUDE.md — dotfiles-openSUSE
 
 Project memory for Claude Code, auto-loaded every session. For the shared Core
-rules (the "is it Core?" test, the manifest contract, the load order) see
-`core/CLAUDE.md` and `core/CONTRIBUTING.md`.
+rules (the load order, the "is it Core?" test, the manifest contract) see
+`core/README.md` and `core/CONTRIBUTING.md`.
 
 ## What this repo is
 
-`dotfiles-openSUSE` is the **OS-native layer for openSUSE (stamped from the Fedora template)** of a ten-repo, three-layer dotfiles fleet
-(Core → OS-native → Role → Showcase). Two flavors with **different update commands** — Tumbleweed (rolling) uses `zypper dup`, Leap (stable) uses `zypper up`. Get this wrong and you half-update. Add the Packman repo for codecs.
+`dotfiles-openSUSE` is the **OS-native layer for openSUSE** in a **nine-repo dotfiles system** built on a three-layer
+model (Core → OS-native → Role). Stamped from the Fedora template (see `core/PORTING-MATRIX.md`). Two flavors with **different update commands** — Tumbleweed (rolling) uses `zypper dup`, Leap (stable) uses `zypper up`. Get this wrong and you half-update. Add the Packman repo for codecs.
 
 ## The rule that bites
 
