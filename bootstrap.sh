@@ -109,8 +109,10 @@ provision() {
   local -a pkgs=()
   mapfile -t pkgs < <(blib_read_pkgs "$DOTFILES/install/packages.txt")
   # Guard the empty case: an all-comment/blank packages.txt yields a zero-length
-  # array, and a package-manager install with no args errors out — aborting the
-  # whole bootstrap under `set -e`. Skip the install instead and carry on.
+  # array. zypper_install wraps `zypper install` in `if …; then` (errexit-exempt),
+  # so an empty list wouldn't abort — but it WOULD run zypper with no args, trip
+  # the "bulk install hit a snag" per-package fallback, and then log a misleading
+  # "0 requested" success. Skip the install instead and carry on.
   if ((${#pkgs[@]})); then
     zypper_install "${pkgs[@]}"
     blib_ok "zypper packages requested: ${#pkgs[@]}"
