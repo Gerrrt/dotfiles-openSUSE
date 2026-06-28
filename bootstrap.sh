@@ -108,8 +108,15 @@ provision() {
   blib_say "zypper packages (from install/packages.txt)"
   local -a pkgs=()
   mapfile -t pkgs < <(blib_read_pkgs "$DOTFILES/install/packages.txt")
-  zypper_install "${pkgs[@]}"
-  blib_ok "zypper packages requested: ${#pkgs[@]}"
+  # Guard the empty case: an all-comment/blank packages.txt yields a zero-length
+  # array, and a package-manager install with no args errors out — aborting the
+  # whole bootstrap under `set -e`. Skip the install instead and carry on.
+  if ((${#pkgs[@]})); then
+    zypper_install "${pkgs[@]}"
+    blib_ok "zypper packages requested: ${#pkgs[@]}"
+  else
+    blib_warn "install/packages.txt lists no packages — skipping zypper install"
+  fi
 
   # Tools not reliably packaged on openSUSE — match the other repos via upstream.
   if ! command -v starship >/dev/null; then
