@@ -1,17 +1,11 @@
-<div align="center">
-
 # 🦎 dotfiles-openSUSE
 
-### openSUSE — both flavors, one config.
-
-The openSUSE layer (zypper) — Tumbleweed and Leap, over the shared core.
+**openSUSE — both flavors, one config.** The openSUSE layer (zypper) —
+Tumbleweed and Leap, over the shared core.
 
 `zypper` · `zsh` · `nvim` · `tmux`
 
-[![showcase](https://img.shields.io/badge/showcase-live-7aa2f7?style=flat-square)](https://gerrrt.github.io/dotfiles-web/)
-[![openSUSE](https://img.shields.io/badge/openSUSE-ready-9ece6a?style=flat-square)]()
-
-</div>
+[![showcase](https://img.shields.io/badge/showcase-live-7aa2f7?style=flat-square)](https://gerrrt.github.io/dotfiles-web/) ![openSUSE](https://img.shields.io/badge/openSUSE-ready-9ece6a?style=flat-square)
 
 ---
 
