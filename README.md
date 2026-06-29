@@ -1,4 +1,13 @@
-# dotfiles-openSUSE
+# 🦎 dotfiles-openSUSE
+
+**openSUSE — both flavors, one config.** The openSUSE layer (zypper) —
+Tumbleweed and Leap, over the shared core.
+
+`zypper` · `zsh` · `nvim` · `tmux`
+
+[![showcase](https://img.shields.io/badge/showcase-live-7aa2f7?style=flat-square)](https://gerrrt.github.io/dotfiles-web/) ![openSUSE](https://img.shields.io/badge/openSUSE-ready-9ece6a?style=flat-square)
+
+---
 
 The **OS-native layer** for openSUSE (Tumbleweed + Leap). Core (zsh/tmux/nvim/git)
 is vendored under `core/` from [`dotfiles-core`](../dotfiles-core); this repo adds
