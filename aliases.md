@@ -1,7 +1,7 @@
 # openSUSE Aliases Cheat Sheet
 
-OS-specific aliases from `os/opensuse.zsh`. See `core/` for the universal alias
-reference (modern CLI, git, safety nets) that applies on every machine.
+OS-specific aliases from `os/opensuse.zsh`. See [`core/aliases.md`](core/aliases.md)
+for the universal aliases reference (modern CLI, git, safety nets) that applies on every machine.
 
 > **Tumbleweed vs Leap:** Use `zdup` for Tumbleweed (rolling distribution upgrade),
 > use `zup` for Leap (stable package updates). Getting this wrong causes a half-upgrade.
@@ -39,20 +39,20 @@ reference (modern CLI, git, safety nets) that applies on every machine.
 
 | Alias / Function | Expands To |
 |-----------------|------------|
-| `aa-status` | `sudo aa-status` (or message if not active) |
+| `aa-status` | `sudo aa-status 2>/dev/null \|\| echo "AppArmor not active (expected on WSL)"` |
 | `aa-unconfined` | `sudo aa-unconfined` |
 | `aa-complain <profile>` | Set profile to complain mode (function) |
 | `aa-enforce <profile>` | Set profile to enforce mode (function) |
 
-## Clipboard / WSL2 / Navigation
+## Clipboard / WSL / Navigation
 
 | Alias | Expands To | Condition |
 |-------|-----------|----------|
 | `pbcopy` | `clip` | clip available |
 | `pbpaste` | `clip-paste` | clip-paste available |
-| `dotsync` | `cd ~/dotfiles-openSUSE` | always |
+| `dotsync` | `cd "$HOME/dotfiles-openSUSE"` | always |
 | `opsignin` | `eval "$(op signin)"` | 1Password CLI |
 | `localip` | `ip -brief -4 addr show scope global` | always |
-| `open` | `explorer.exe` | WSL2 |
-| `xdg-open` | `wslview` | WSL2 + wslview |
-| `cdwin` | `cd "$WINHOME"` | WSL2 + WINHOME set |
+| `open` | `explorer.exe` | WSL |
+| `xdg-open` | `wslview` | WSL + wslview |
+| `cdwin` | `cd "$WINHOME"` | WSL + WINHOME set |
