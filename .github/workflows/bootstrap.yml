@@ -20,4 +20,10 @@ jobs:
     uses: Gerrrt/dotfiles-core/.github/workflows/bootstrap-test.yml@v2
     with:
       image: opensuse/tumbleweed
-      prep: "zypper --non-interactive --gpg-auto-import-keys install bash zsh"
+      # openSUSE Tumbleweed's OSS mirror (cdn.opensuse.org) intermittently times out
+      # in CI (curl error 28), and a single `zypper install` has no retry, so one slow
+      # fetch fails the whole links-only job (zsh "no provider" -> exit 104). Retry the
+      # refresh+install up to 5x with backoff; the `if` keeps a failed attempt from
+      # tripping `set -e` (prep runs under `sh -euc`), and the final `command -v zsh`
+      # still fails LOUD if zsh genuinely can't be installed (no false green).
+      prep: 'for i in 1 2 3 4 5; do if zypper --non-interactive --gpg-auto-import-keys refresh && zypper --non-interactive --gpg-auto-import-keys install bash zsh; then break; fi; echo "zypper prep attempt $i failed (mirror timeout?), retrying in $((i*10))s..." >&2; sleep $((i*10)); done; command -v zsh >/dev/null || { echo "zsh still not installed after 5 attempts" >&2; exit 1; }'
